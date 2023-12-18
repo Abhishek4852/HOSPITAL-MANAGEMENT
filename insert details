@@ -1,0 +1,451 @@
+# for inserting and showing patient and doctor details
+
+
+          
+
+from tkinter import *
+import tkinter as tk
+from tkinter import ttk, messagebox, simpledialog
+import mysql.connector
+from datetime import datetime
+import re
+from tkcalendar import DateEntry
+
+class HospitalManagement:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Hospital Management System")
+        self.root.geometry("400x300+500+300")
+
+        self.setup_database()
+        self.setup_frames()
+        self.setup_widgets()
+
+    def setup_database(self):
+        # Connect to MySQL database
+        self.db = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="Abhishek4852@",
+            database="hospital_management"
+        )
+        self.cursor = self.db.cursor()
+
+    def setup_frames(self):
+        # Frame for patient details
+        self.frame_patient = Frame(self.root, bd=10, relief=RIDGE)
+        self.frame_patient.pack(side=TOP, pady=5)
+
+        # Frame for doctor details
+        self.frame_doctor = Frame(self.root, bd=10, relief=RIDGE)
+        self.frame_doctor.pack(side=TOP, pady=5)
+        
+         # Frame for patient details
+        self.frame_patient = Frame(self.root, bd=10, relief=RIDGE)
+        self.frame_patient.pack(side=TOP, pady=5)
+
+        # Frame for doctor details
+        self.frame_doctor = Frame(self.root, bd=10, relief=RIDGE)
+        self.frame_doctor.pack(side=TOP, pady=5)
+
+
+
+    def setup_widgets(self):
+        # Button to insert patient details
+        self.btnInsertPatient = Button(self.frame_patient, text="Insert Patient Details", font=("arial", 12, "bold"), bd=4, padx=10, pady=4, command=self.open_insert_patient_window)
+        self.btnInsertPatient.grid(row=0, column=0, columnspan=3)
+
+        # Button to show patient information
+        self.btnShowPatientInfo = Button(self.frame_patient, text="Show Patient Information", font=("arial", 12, "bold"), bd=4, padx=10, pady=4, command=self.show_patient_info)
+        self.btnShowPatientInfo.grid(row=1, column=0, columnspan=3)
+
+        # Button to insert doctor details
+        self.btnInsertDoctor = Button(self.frame_doctor, text="Insert Doctor Details", font=("arial", 12, "bold"), bd=4, padx=10, pady=4, command=self.open_insert_doctor_window)
+        self.btnInsertDoctor.grid(row=0, column=0, columnspan=3)
+
+        # Button to show doctor information
+        self.btnShowDoctorInfo = Button(self.frame_doctor, text="Show Doctor Information", font=("arial", 12, "bold"), bd=4, padx=10, pady=4, command=self.show_doctor_info)
+        self.btnShowDoctorInfo.grid(row=1, column=0, columnspan=3)
+        # Button to show all patient details
+        self.btnShowAllPatients = Button(self.frame_patient, text="Show All Patients", font=("arial", 12, "bold"), bd=4, padx=10, pady=4, command=self.show_all_patients)
+        self.btnShowAllPatients.grid(row=2, column=0, columnspan=3)
+
+        # Button to show all doctor details
+        self.btnShowAllDoctors = Button(self.frame_doctor, text="Show All Doctors", font=("arial", 12, "bold"), bd=4, padx=10, pady=4, command=self.show_all_doctors)
+        self.btnShowAllDoctors.grid(row=2, column=0, columnspan=3)
+
+    def open_insert_patient_window(self):
+        # Function to open a new window for inserting patient details
+        insert_patient_window = tk.Toplevel(self.root)
+        insert_patient_window.title("Insert Patient Details")
+
+        # Entry fields for patient details
+        Label(insert_patient_window, text="First Name:").grid(row=0, column=0)
+        Label(insert_patient_window, text="Last Name:").grid(row=1, column=0)
+        Label(insert_patient_window, text="DOB:").grid(row=2, column=0)
+        Label(insert_patient_window, text="Gender:").grid(row=3, column=0)
+        Label(insert_patient_window, text="Address:").grid(row=4, column=0)
+        Label(insert_patient_window, text="Mobile Number:").grid(row=5, column=0)
+        Label(insert_patient_window, text="Issue Facing:").grid(row=6, column=0)
+
+        self.first_name_entry = Entry(insert_patient_window)
+        self.last_name_entry = Entry(insert_patient_window)
+        self.dob_entry = DateEntry(insert_patient_window, width=12, background='darkblue', foreground='white', borderwidth=2, date_pattern='yyyy-mm-dd')
+        self.dob_entry.grid(row=2, column=1)
+        self.address_entry = Entry(insert_patient_window)
+
+        # Validate only characters for first name and last name
+        validate_name_command = insert_patient_window.register(self.validate_name_entry)
+        self.first_name_entry = Entry(insert_patient_window, validate="key", validatecommand=(validate_name_command, "%P"))
+        self.last_name_entry = Entry(insert_patient_window, validate="key", validatecommand=(validate_name_command, "%P"))
+
+        self.mobile_no_entry = Entry(insert_patient_window)
+
+        # Validate only uppercase characters for issue facing
+        validate_issue_command = insert_patient_window.register(self.validate_issue_entry)
+        self.issue_facing_entry = Entry(insert_patient_window, validate="key", validatecommand=(validate_issue_command, "%P"))
+
+        self.first_name_entry.grid(row=0, column=1)
+        self.last_name_entry.grid(row=1, column=1)
+        self.dob_entry.grid(row=2, column=1)
+        self.address_entry.grid(row=4, column=1)
+
+        # Validate mobile number entry (allow only 10 digits)
+        validate_mobile_command = insert_patient_window.register(self.validate_mobile_entry)
+        self.mobile_no_entry = Entry(insert_patient_window, validate="key", validatecommand=(validate_mobile_command, "%P"))
+        self.mobile_no_entry.grid(row=5, column=1)
+
+        # Validate issue facing (convert to uppercase)
+        self.issue_facing_entry.grid(row=6, column=1)
+
+        gender_options = ['F', 'M', 'Others']
+        self.gender_menu = ttk.Combobox(insert_patient_window, values=gender_options)
+        self.gender_menu.grid(row=3, column=1)
+        Label(insert_patient_window, text="Gender:").grid(row=3, column=0)
+
+        # Button to submit patient details
+        btn_submit_patient = Button(insert_patient_window, text="Submit", command=lambda: self.insert_patient(insert_patient_window))
+        btn_submit_patient.grid(row=7, columnspan=2)
+
+        # Validate date of birth
+        def validate_dob():
+            dob = self.dob_entry.get()
+            try:
+                datetime.strptime(dob, "%Y-%m-%d")
+                return True
+            except ValueError:
+                messagebox.showwarning("Warning", "Invalid date of birth.")
+                return False
+
+        # Validate mobile number
+        def validate_mobile():
+            mobile_no = self.mobile_no_entry.get()
+            pattern = re.compile(r'^[6-9]\d{9}$')
+            if not bool(pattern.match(mobile_no)):
+                messagebox.showwarning("Warning", "Invalid mobile number.")
+                return False
+            return True
+
+        # Validate gender
+        def validate_gender():
+            gender = self.gender_menu.get()
+            if gender not in ['F', 'M', 'Others']:
+                messagebox.showwarning("Warning", "Invalid gender.")
+                return False
+            return True
+
+        # Validate first name and last name
+        def validate_names():
+            first_name = self.first_name_entry.get().upper()
+            last_name = self.last_name_entry.get().upper()
+            if not (first_name.isalpha() and last_name.isalpha()):
+                messagebox.showwarning("Warning", "Invalid first name or last name.")
+                return False
+            return True
+
+        # Validate issue facing (convert to uppercase)
+        def validate_issue():
+            issue_facing = self.issue_facing_entry.get().upper()
+            self.issue_facing_entry.delete(0, tk.END)
+            self.issue_facing_entry.insert(0, issue_facing)
+            return True
+
+        # Button to submit patient details with validations
+        btn_submit_patient = Button(insert_patient_window, text="Submit", command=lambda: self.insert_patient(insert_patient_window) if all([validate_dob(), validate_mobile(), validate_gender(), validate_names(), validate_issue()]) else None)
+        btn_submit_patient.grid(row=7, columnspan=2)
+
+    # Validate mobile number entry (allow only 10 digits)
+    def validate_mobile_entry(self, new_value):
+        # Ensure that the new value contains only digits
+        if new_value.isdigit():
+            # Allow only 10 digits
+            return len(new_value) <= 10
+        else:
+            return False
+
+    # Validate only characters for first name and last name
+    def validate_name_entry(self, new_value):
+        return new_value.isalpha()
+
+    # Validate only uppercase characters for issue facing
+    def validate_issue_entry(self, new_value):
+        self.issue_facing_entry.delete(0, tk.END)
+        self.issue_facing_entry.insert(0, new_value.upper())
+        return True
+
+        
+        
+        # Dropdown for selecting gender
+       
+
+
+    def show_patient_info(self):
+        # Function to show patient information based on patient ID
+        try:
+            # Get patient ID from the user
+            patient_id = simpledialog.askinteger("Patient ID", "Enter Patient ID:")
+
+            # Check if the user canceled the input
+            if patient_id is None:
+                messagebox.showwarning("Warning", "Operation canceled.")
+                return
+
+            # Execute SQL query to retrieve patient information
+            query = f"SELECT First_Name, Last_Name, DOB, Gender, Address, Mobile_No, Issue_Facing FROM Patient WHERE PID = {patient_id}"
+            self.cursor.execute(query)
+            patient_info = self.cursor.fetchone()
+
+            # Check if patient with the given ID exists
+            if not patient_info:
+                messagebox.showwarning("Warning", f"No patient found with ID {patient_id}.")
+                return
+
+            # Display patient information
+            info_text = f"First Name: {patient_info[0]}\nLast Name: {patient_info[1]}\nDOB: {patient_info[2]}\n" \
+                        f"Gender: {patient_info[3]}\nAddress: {patient_info[4]}\nMobile Number: {patient_info[5]}\n" \
+                        f"Issue Facing: {patient_info[6]}"
+
+            messagebox.showinfo("Patient Information", info_text)
+
+        except mysql.connector.Error as e:
+            # Handle MySQL database errors
+            messagebox.showerror("Database Error", f"MySQL Error: {e}")
+        except Exception as e:
+            # Handle other exceptions
+            messagebox.showerror("Error", str(e))
+
+    def insert_patient(self, insert_patient_window):
+        # Function to insert patient details
+        try:
+            # Get details from the user
+            first_name = self.first_name_entry.get()
+            last_name = self.last_name_entry.get()
+            dob = self.dob_entry.get()
+            gender = self.gender_menu.get()
+            address = self.address_entry.get()
+            mobile_no = self.mobile_no_entry.get()
+            issue_facing = self.issue_facing_entry.get()
+
+            # Validate input (you can add more validation as needed)
+            if not first_name or not last_name or not dob or not gender or not address or not mobile_no:
+                messagebox.showwarning("Warning", "Please enter all details.")
+                return
+
+            # Execute SQL query to insert patient details
+            query = f"INSERT INTO Patient (First_Name, Last_Name, DOB, Gender, Address, Mobile_No, Issue_Facing) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+            values = (first_name, last_name, dob, gender, address, mobile_no, issue_facing)
+            self.cursor.execute(query, values)
+            self.db.commit()
+
+            # Display success message
+            messagebox.showinfo("Success", "Details inserted successfully!")
+
+            # Close the insert window
+            insert_patient_window.destroy()
+
+        except mysql.connector.Error as e:
+            # Handle MySQL database errors
+            messagebox.showerror("Database Error", f"MySQL Error: {e}")
+        except Exception as e:
+            # Handle other exceptions
+            messagebox.showerror("Error", str(e))
+
+    def open_insert_doctor_window(self):
+        # Function to open a new window for inserting doctor details
+        insert_doctor_window = tk.Toplevel(self.root)
+        insert_doctor_window.title("Insert Doctor Details")
+
+        # Entry fields for doctor details
+        Label(insert_doctor_window, text="First Name:").grid(row=0, column=0)
+        Label(insert_doctor_window, text="Last Name:").grid(row=1, column=0)
+        Label(insert_doctor_window, text="Qualification:").grid(row=2, column=0)
+        Label(insert_doctor_window, text="Mobile Number:").grid(row=3, column=0)
+        Label(insert_doctor_window, text="Gender:").grid(row=4, column=0)
+        Label(insert_doctor_window, text="Specialization:").grid(row=5, column=0)
+        Label(insert_doctor_window, text="Address:").grid(row=6, column=0)
+        Label(insert_doctor_window, text="DOB (YYYY-MM-DD):").grid(row=7, column=0)
+        Label(insert_doctor_window, text="Years of Experience:").grid(row=8, column=0)
+
+        self.first_name_entry = Entry(insert_doctor_window)
+        self.last_name_entry = Entry(insert_doctor_window)
+        self.qualification_entry = Entry(insert_doctor_window)
+        self.mobile_no_entry = Entry(insert_doctor_window)
+        self.gender_entry = Entry(insert_doctor_window)
+        self.specialization_entry = Entry(insert_doctor_window)
+        self.address_entry = Entry(insert_doctor_window)
+        self.dob_entry = Entry(insert_doctor_window)
+        self.years_of_experience_entry = Entry(insert_doctor_window)
+
+        self.first_name_entry.grid(row=0, column=1)
+        self.last_name_entry.grid(row=1, column=1)
+        self.qualification_entry.grid(row=2, column=1)
+        self.mobile_no_entry.grid(row=3, column=1)
+        self.gender_entry.grid(row=4, column=1)
+        self.specialization_entry.grid(row=5, column=1)
+        self.address_entry.grid(row=6, column=1)
+        self.dob_entry.grid(row=7, column=1)
+        self.years_of_experience_entry.grid(row=8, column=1)
+
+        # Button to submit doctor details
+        btn_submit_doctor = Button(insert_doctor_window, text="Submit", command=lambda: self.insert_doctor(insert_doctor_window))
+        btn_submit_doctor.grid(row=9, columnspan=2)
+
+    def show_doctor_info(self):
+        # Function to show doctor information by entering doctor ID
+        doctor_id = simpledialog.askinteger("Doctor Information", "Enter Doctor ID:")
+        if doctor_id is not None:
+            try:
+                # Execute SQL query to retrieve doctor information
+                query = f"SELECT * FROM doctor WHERE DID = {doctor_id}"
+                self.cursor.execute(query)
+                doctor_info = self.cursor.fetchone()
+
+                # Display doctor information
+                if doctor_info:
+                    info_str = f"Doctor ID: {doctor_info[0]}\n" \
+                               f"Name: {doctor_info[1]} {doctor_info[2]}\n" \
+                               f"Qualification: {doctor_info[3]}\n" \
+                               f"Mobile Number: {doctor_info[5]}\n" \
+                               f"Gender: {doctor_info[7]}\n" \
+                               f"Specialization: {doctor_info[9]}\n" \
+                               f"Address: {doctor_info[4]}\n" \
+                               f"DOB: {doctor_info[6]}\n" \
+                               f"Years of Experience: {doctor_info[8]}"
+                    messagebox.showinfo("Doctor Information", info_str)
+                else:
+                    messagebox.showwarning("Doctor Information", "Doctor not found.")
+
+            except mysql.connector.Error as e:
+                # Handle MySQL database errors
+                messagebox.showerror("Database Error", f"MySQL Error: {e}")
+            except Exception as e:
+                # Handle other exceptions
+                messagebox.showerror("Error", str(e))
+
+    def insert_doctor(self, insert_doctor_window):
+        # Function to insert doctor details
+        try:
+            # Get details from the user
+            first_name = self.first_name_entry.get()
+            last_name = self.last_name_entry.get()
+            qualification = self.qualification_entry.get()
+            mobile_no = self.mobile_no_entry.get()
+            gender = self.gender_entry.get()
+            specialization = self.specialization_entry.get()
+            address = self.address_entry.get()
+            dob = self.dob_entry.get()
+            years_of_experience = self.years_of_experience_entry.get()
+
+            # Validate input (you can add more validation as needed)
+            if not first_name or not last_name or not qualification or not mobile_no or not gender or not specialization:
+                messagebox.showwarning("Warning", "Please enter all details.")
+                return
+
+            # Execute SQL query to insert doctor details
+            query = f"INSERT INTO doctor (First_Name, Last_Name, Qualification, Mobile_no, Gender, Specialization, Address, DOB, Years_of_Experience) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
+            values = (first_name, last_name, qualification, mobile_no, gender, specialization, address, dob, years_of_experience)
+            self.cursor.execute(query, values)
+            self.db.commit()
+
+            # Display success message
+            messagebox.showinfo("Success", "Doctor details inserted successfully!")
+
+            # Close the insert window
+            insert_doctor_window.destroy()
+
+        except mysql.connector.Error as e:
+            # Handle MySQL database errors
+            messagebox.showerror("Database Error", f"MySQL Error: {e}")
+        except Exception as e:
+            # Handle other exceptions
+            messagebox.showerror("Error", str(e))
+            
+    def show_all_patients(self):
+        try:
+            # Execute SQL query to retrieve all patient details
+            query = "SELECT * FROM Patient"
+            self.cursor.execute(query)
+            all_patients = self.cursor.fetchall()
+
+            # Display patient details in a new window using a treeview
+            show_all_patients_window = tk.Toplevel(self.root)
+            show_all_patients_window.title("All Patients Details")
+
+            tree = ttk.Treeview(show_all_patients_window)
+            tree["columns"] = ("First Name", "Last Name", "DOB", "Gender", "Address", "Mobile Number", "Issue Facing")
+
+            tree.heading("#0", text="PID")
+            tree.column("#0", width=50)
+
+            for col in tree["columns"]:
+                tree.heading(col, text=col)
+
+            for patient in all_patients:
+                tree.insert("", "end", values=patient)
+
+            tree.pack()
+
+        except mysql.connector.Error as e:
+            # Handle MySQL database errors
+            messagebox.showerror("Database Error", f"MySQL Error: {e}")
+        except Exception as e:
+            # Handle other exceptions
+            messagebox.showerror("Error", str(e))
+
+    def show_all_doctors(self):
+        try:
+            # Execute SQL query to retrieve all doctor details
+            query = "SELECT * FROM doctor"
+            self.cursor.execute(query)
+            all_doctors = self.cursor.fetchall()
+
+            # Display doctor details in a new window using a treeview
+            show_all_doctors_window = tk.Toplevel(self.root)
+            show_all_doctors_window.title("All Doctors Details")
+
+            tree = ttk.Treeview(show_all_doctors_window)
+            tree["columns"] = ("First Name", "Last Name", "Qualification", "Mobile Number", "Gender", "Specialization", "Address", "DOB", "Years of Experience")
+
+            tree.heading("#0", text="DID")
+            tree.column("#0", width=50)
+
+            for col in tree["columns"]:
+                tree.heading(col, text=col)
+
+            for doctor in all_doctors:
+                tree.insert("", "end", values=doctor)
+
+            tree.pack()
+
+        except mysql.connector.Error as e:
+            # Handle MySQL database errors
+            messagebox.showerror("Database Error", f"MySQL Error: {e}")
+        except Exception as e:
+            # Handle other exceptions
+            messagebox.showerror("Error", str(e))
+
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    ob = HospitalManagement(root)
+    root.mainloop()
