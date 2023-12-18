@@ -1,0 +1,395 @@
+# database code
+
+
+
+ create database hospital_management;
+ use hospital_management;
+
+create table Patient(
+PID int primary key auto_increment,
+First_Name varchar(50) not null,
+Last_Name varchar(50) not null,
+DOB date not null,
+Gender varchar(20) not null,
+Address varchar(200) not null,
+Mobile_No bigint(11) not null,
+Issue_Facing varchar(200) null
+);
+delete from patient where pid = 39;
+select * from patient;
+insert into Patient values(1, 'AANCHAL', 'PATEL', '2004-03-02', 'F', 'Rau', 963852741, 'Cold');
+insert into Patient (First_Name, Last_Name, DOB, Gender, Address, Mobile_No, Issue_Facing) values('ABHAY SINGH', 'THAKUR', '2004-03-03', 'M', 'Vijay Nagar', 963852742, 'Fever');
+insert into Patient (First_Name, Last_Name, DOB, Gender, Address, Mobile_No, Issue_Facing) values('ABHISHEK','TAYDE', '2004-03-03', 'M', 'Vijay Nagar', 963852742,'stomach pain');
+insert into Patient (First_Name, Last_Name, DOB, Gender, Address, Mobile_No, Issue_Facing) values('ABHISEK','YADUWANSHI', '2004-03-03', 'M', 'Limbodi', 963852744,'lever problem');
+insert into Patient (First_Name, Last_Name, DOB, Gender, Address, Mobile_No, Issue_Facing) values('HEMANT','SHARMA', '2004-09-15', 'M', 'LIG', 963852745,'asthama');
+insert into Patient (First_Name, Last_Name, DOB, Gender, Address, Mobile_No, Issue_Facing) values('DIGPAL','THAKUR', '2004-04-10', 'M', 'Satya Sai', 963852746,'cancer');
+insert into Patient (First_Name, Last_Name, DOB, Gender, Address, Mobile_No, Issue_Facing) values('RISHI','RAGUVANSHI', '2004-08-03', 'M', 'HIG', 963852747,'body pain');
+insert into Patient (First_Name, Last_Name, DOB, Gender, Address, Mobile_No, Issue_Facing) values('ARPAN','PATRA', '2004-09-09', 'M', 'SIG', 963852748,'stomach pain');
+insert into Patient (First_Name, Last_Name, DOB, Gender, Address, Mobile_No, Issue_Facing) values('LOKESH','PATEL', '2004-07-11', 'M', 'South Tukoganj ', 963852749,'head ache');
+insert into Patient (First_Name, Last_Name, DOB, Gender, Address, Mobile_No, Issue_Facing) values('ADITYA','MALVIYA', '2004-03-13', 'M', 'IT park', 963852756,'eye pain');
+insert into Patient (First_Name, Last_Name, DOB, Gender, Address, Mobile_No, Issue_Facing) values('AKASH','KUSHWAHA ', '2004-12-23', 'M', 'Palasiya', 963852789,'teeth pain');
+insert into Patient (First_Name, Last_Name, DOB, Gender, Address, Mobile_No, Issue_Facing) values('ANIMESH','MISHRA', '2004-09-04', 'M', 'New palasiya', 963852741,'stomach pain');
+insert into Patient (First_Name, Last_Name, DOB, Gender, Address, Mobile_No, Issue_Facing) values('ANKITA','TIWARI', '2004-04-18', 'F', 'Khandva naka', 963852710,'eye pain');
+insert into Patient (First_Name, Last_Name, DOB, Gender, Address, Mobile_No, Issue_Facing) values('ANUSHKA','SAHU', '2004-05-06', 'F', 'Bolaram', 963852788,'fever');
+insert into Patient (First_Name, Last_Name, DOB, Gender, Address, Mobile_No, Issue_Facing) values('ANUSHKA','SHRIVASTAVA', '2004-02-15', 'F', 'Bhawarkua', 963852777,'fever');
+insert into Patient (First_Name, Last_Name, DOB, Gender, Address, Mobile_No, Issue_Facing) values('ARCHI','SINGHAI', '2004-11-05', 'F', 'Tower Choraha', 963852788,'canacer');
+insert into Patient (First_Name, Last_Name, DOB, Gender, Address, Mobile_No, Issue_Facing) values('ASHWIN','CHOUHAN', '2004-08-18', 'M', 'Sindi Colony', 963852799,'cancer');
+insert into Patient (First_Name, Last_Name, DOB, Gender, Address, Mobile_No, Issue_Facing) values('BHAVIK','JAIN', '2004-05-03', 'M', 'Collector', 963852711,'stomach pain');
+insert into Patient (First_Name, Last_Name, DOB, Gender, Address, Mobile_No, Issue_Facing) values('HARSHITA','JAIN', '2004-05-12', 'F', 'Rajwada', 963852700,'stomach pain');
+insert into Patient (First_Name, Last_Name, DOB, Gender, Address, Mobile_No, Issue_Facing) values('BHUMIKA','JATT', '2004-07-08', 'F', 'Novelty Market', 963852733,'heart problem');
+insert into Patient (First_Name, Last_Name, DOB, Gender, Address, Mobile_No, Issue_Facing) values('HARSHITA','HAMAD', '2004-02-06', 'F', 'Scheme 99', 963852771,'pain in nach');
+insert into Patient (First_Name, Last_Name, DOB, Gender, Address, Mobile_No, Issue_Facing) values('CHAVI','SHASTRI', '2004-11-02', 'F', 'Press Complex', 963852790,'pain in leg');
+insert into Patient (First_Name, Last_Name, DOB, Gender, Address, Mobile_No, Issue_Facing) values('DEVESH','BHAGORA', '2004-10-23', 'M', 'Geeta bhawan', 963852456,'pain in mouth');
+insert into Patient (First_Name, Last_Name, DOB, Gender, Address, Mobile_No, Issue_Facing) values('DEEKSHA','GOUR', '2004-03-13', 'F', 'MY Square', 963852123,'cancer');
+insert into Patient (First_Name, Last_Name, DOB, Gender, Address, Mobile_No, Issue_Facing) values('CHHAVI','GAWANDE', '2004-02-17', 'F', 'Shivagi Vatica', 963852321,'heart problem');
+insert into Patient (First_Name, Last_Name, DOB, Gender, Address, Mobile_No, Issue_Facing) values('HITESH','MAHAJAN', '2004-08-22', 'M', 'Rau', 963852987,'fever');
+insert into Patient (First_Name, Last_Name, DOB, Gender, Address, Mobile_No, Issue_Facing) values('KUNAL','PATEL', '2004-09-10', 'M', 'Teen Emli', 963852189,'asthama');
+insert into Patient (First_Name, Last_Name, DOB, Gender, Address, Mobile_No, Issue_Facing) values('KUSHAL','ARYA', '2004-10-15', 'M', 'Musakhede', 963851236,'stomach pain');
+insert into Patient (First_Name, Last_Name, DOB, Gender, Address, Mobile_No, Issue_Facing) values('JASMEET KAUR','SARAN', '2004-02-04', 'F', 'Silicon city', 963857896,'lever problem');
+insert into Patient (First_Name, Last_Name, DOB, Gender, Address, Mobile_No, Issue_Facing) values('KUSHAGA','BAIS', '2004-08-27', 'M', 'Dewas Naka', 963854563,'fever');
+insert into Patient (First_Name, Last_Name, DOB, Gender, Address, Mobile_No, Issue_Facing) values('LAKSHYA','BAGORA', '2004-12-12', 'M', 'Sajan Nagar', 963851456,'stomach pain');
+insert into Patient (First_Name, Last_Name, DOB, Gender, Address, Mobile_No, Issue_Facing) values('MADHAV','TAWAR', '2004-10-09', 'M', 'Chotte Gwaltoli', 963851258,'problem in eye');
+insert into Patient (First_Name, Last_Name, DOB, Gender, Address, Mobile_No, Issue_Facing) values('MOHIT','VEERMA', '2004-12-13', 'M', 'Saket Nagar', 963858564,'leg pain');
+insert into Patient (First_Name, Last_Name, DOB, Gender, Address, Mobile_No, Issue_Facing) values('MRADUL','NATANI', '2004-10-14', 'M', 'Sri Ram Nagar', 963858956,'neck pain');
+insert into Patient (First_Name, Last_Name, DOB, Gender, Address, Mobile_No, Issue_Facing) values('PRASHANT','SHARMA', '2004-05-22', 'M', 'Tilak Nagar', 963859852,'fever');
+insert into Patient (First_Name, Last_Name, DOB, Gender, Address, Mobile_No, Issue_Facing) values('RIMZIM','SONI', '2004-01-13', 'F', 'Goyal Nagar', 963854781,'fever');
+insert into Patient (First_Name, Last_Name, DOB, Gender, Address, Mobile_No, Issue_Facing) values('MANAS','YADAV', '2004-09-10', 'M', 'Shree Nagar', 963857893,'fever');
+insert into Patient (First_Name, Last_Name, DOB, Gender, Address, Mobile_No, Issue_Facing) values('PIYUSH','YADAV', '2004-12-16', 'M', 'Bajrang Nagar', 963857413,'fever');
+
+
+-- drop table doctor;
+create table doctor(
+DID int primary key auto_increment,
+First_Name  varchar(50) not null,
+Last_Name  varchar(50) not null,
+Qualification varchar(50) not null,
+Address varchar(200),
+Mobile_no bigint(11) not null,
+DOB date,
+Gender varchar(20) not null,
+Years_of_Experience varchar(50),
+Specialization varchar(100) not null
+);
+
+
+
+insert into doctor (First_Name, Last_Name, Qualification, Mobile_no, Gender, Specialization, Address,DOB,Years_of_Experience) values('Dr. NITIN','NAGAR', 'Md',963258741,'M','Neurologist','palasia','1999-08-05',' 5 year+');
+insert into doctor (First_Name, Last_Name, Qualification, Mobile_no, Gender, Specialization, Address,DOB,Years_of_Experience) values('Dr. PRADEEP','JATAV','MD',963214587,'M','Dermatologist','palasia','1991-08-05',' 5 year+');
+insert into doctor (First_Name, Last_Name, Qualification, Mobile_no, Gender, Specialization, Address,DOB,Years_of_Experience) values('Dr. RUPESH','SENDRE','MBBS',789456156,'M','Psychiatrist','robot','1993-04-05',' 5 year+');
+insert into doctor (First_Name, Last_Name, Qualification, Mobile_no, Gender, Specialization, Address,DOB,Years_of_Experience) values('Dr. PIYUSH','YADAV','DPT',897456123,'M','Cardiologist','palasia','1999-08-05',' 5 year+');
+insert into doctor (First_Name, Last_Name, Qualification, Mobile_no, Gender, Specialization, Address,DOB,Years_of_Experience) values('Dr. MANAS','YADAV','MD',741256398,'M','Dermatologist','teen imali','1989-06-02',' 5 year+');
+insert into doctor (First_Name, Last_Name, Qualification, Mobile_no, Gender, Specialization, Address,DOB,Years_of_Experience) values('Dr. PRASHANT','SHARMA','DNP',852697412,'M','Gastroenterologist','IT park','1989-06-02',' 5 year+');
+insert into doctor (First_Name, Last_Name, Qualification, Mobile_no, Gender, Specialization, Address,DOB,Years_of_Experience) values('Dr. MRADUL','YADAV','PHARMD',986325417,'M','Neurologist','palasia','1999-08-05',' 5 year+');
+insert into doctor (First_Name, Last_Name, Qualification, Mobile_no, Gender, Specialization, Address,DOB,Years_of_Experience) values('Dr. ANUSKA','SAHU','DSC',812365496,'F','Dentist','palasia','1999-08-05',' 5 year+');
+insert into doctor (First_Name, Last_Name, Qualification, Mobile_no, Gender, Specialization, Address,DOB,Years_of_Experience) values('Dr. DIGPAL','THKUR','DBA',823654790,'M','Pediatrician','rani bag','1991-12-12',' 5 year+');
+insert into doctor (First_Name, Last_Name, Qualification, Mobile_no, Gender, Specialization, Address,DOB,Years_of_Experience) values('Dr. MADHAB','YADAV','JD',741236589,'M','Endocrinologist','palasia','1999-08-05',' 5 year+');
+insert into doctor (First_Name, Last_Name, Qualification, Mobile_no, Gender, Specialization, Address,DOB,Years_of_Experience) values('Dr. ABHISHEK','YADUWANSHI','PSYD',932145687,'M','Oncologist','palasia','1999-08-05',' 5 year+');
+insert into doctor (First_Name, Last_Name, Qualification, Mobile_no, Gender, Specialization, Address,DOB,Years_of_Experience) values('Dr. NIKHIL','GOUR','DVM',936521487,'M','Ophthalmologist','old palasia','1999-08-05',' 5 year+');
+insert into doctor (First_Name, Last_Name, Qualification, Mobile_no, Gender, Specialization, Address,DOB,Years_of_Experience) values('Dr. ABHI','YADAV','DMD',756321489,'M','Cardiologist','limbodi','1995-08-07',' 5 year+');
+insert into doctor (First_Name, Last_Name, Qualification, Mobile_no, Gender, Specialization, Address,DOB,Years_of_Experience) values('Dr. LOKESH','PATEL','PHD',854123697,'M','Dermatologist','palasia','1999-08-05',' 5 year+');
+insert into doctor (First_Name, Last_Name, Qualification, Mobile_no, Gender, Specialization, Address,DOB,Years_of_Experience) values('Dr. CHAVI','YADAV','MBBS',876523149,'F','Pathologist','palasia','1999-08-05',' 5 year+');
+insert into doctor (First_Name, Last_Name, Qualification, Mobile_no, Gender, Specialization, Address,DOB,Years_of_Experience) values('Dr. ABHISHEK','TAYDE','MD',723984150,'M','Neonatologist','palasia','1999-08-05',' 5 year+');
+insert into doctor (First_Name, Last_Name, Qualification, Mobile_no, Gender, Specialization, Address,DOB,Years_of_Experience) values('Dr. HIMANI','VISHBAKARMA','PHD',810203045,'F','Gynecologist','bhawarkua','1989-06-02',' 5 year+');
+insert into doctor (First_Name, Last_Name, Qualification, Mobile_no, Gender, Specialization, Address,DOB,Years_of_Experience) values('Dr. MADHAB','GOUR','DMD',693025817,'M','Geriatrician','nakka','1992-04-05',' 5 year+');
+insert into doctor (First_Name, Last_Name, Qualification, Mobile_no, Gender, Specialization, Address,DOB,Years_of_Experience) values('Dr. GEETANSHI','PATEL','JD',902348900,'F','Hematologist','rani bag','1991-12-12',' 5 year+');
+insert into doctor (First_Name, Last_Name, Qualification, Mobile_no, Gender, Specialization, Address,DOB,Years_of_Experience) values('Dr. HARSHITA','TAYDE','MD',701542398,'F','Radiologist','palasia','1999-08-05',' 5 year+');
+insert into doctor (First_Name, Last_Name, Qualification, Mobile_no, Gender, Specialization, Address,DOB,Years_of_Experience) values('Dr. RIMJHIM','PATEL','DBA',630198756,'F','Urologist','palda','1994-03-01',' 5 year+');
+insert into doctor (First_Name, Last_Name, Qualification, Mobile_no, Gender, Specialization, Address,DOB,Years_of_Experience) values('Dr. NANDITA','PATEL','MD',885522013,'F','Pediatrician','palasia','1999-08-05',' 5 year+');
+
+
+
+-- drop table nurse;
+create table nurse(
+NID int  primary key,
+First_Name varchar(50) not null,
+Last_Name varchar(50) not null,
+Address varchar(200) not null,
+Mobile_No bigint(11) not null,
+Nurse_Type varchar(30) not null,
+gender varchar(10),
+Shift varchar(50) not null,
+DOB date,
+Qualification varchar(50) not null
+);
+
+
+
+INSERT INTO nurse (NID, First_Name, Last_Name, Address, Mobile_No, Nurse_Type, Shift, DOB, Qualification, Gender)
+VALUES
+  (1101, 'Nikita', 'Singh', 'LIG', 754210963, 'RN', 'Morning', '1990-01-15', 'CNA', 'F'),
+  (1102, 'Anjali', 'Yadav', 'Palasiya', 743250087, 'RN', 'Morning', '1985-03-22', 'APRN', 'F'),
+  (1103, 'Priya', 'Kumari', 'Bholaram', 908099007, 'CNA', 'Evening', '1988-07-10', 'APRN', 'F'),
+  (1104, 'Priya', 'Yadav', 'Shree Nagar', 709860453, 'RN', 'Morning', '1980-05-18', 'CNA', 'F'),
+  (1105, 'Sneha', 'Singh', 'Gandhi Nagar', 609080712, 'NP', 'Evening', '1982-12-03', 'CNA', 'F'),
+  (1106, 'Pooja', 'Yadav', 'Yaswant Club', 801023678, 'CRNA', 'Evening', '1975-09-28', 'CNA', 'F'),
+  (1107, 'Anita', 'Sharma', 'Madhu Millan', 610345900, 'ER Nurse', 'Evening', '1987-11-15', 'CNA', 'F'),
+  (1108, 'Sneha', 'Singh', 'Regal', 987090864, 'CNS', 'Morning', '1984-02-07', 'CNA', 'F'),
+  (1109, 'Rahul', 'Mishra', 'Malwa Mill', 900000897, 'LPN', 'Morning', '1992-06-30', 'CNA', 'F'),
+  (1110, 'Anita', 'Sharma', 'HIG', 800008976, 'LVN', 'Evening', '1989-08-12', 'CNA', 'F'),
+  (1111, 'Anita', 'Sharma', 'Patni Pura', 700076543, 'RN', 'Morning', '1986-04-25', 'CNA', 'F'),
+  (1112, 'Manisha', 'Yadav', 'Rajendra Nagar', 680970883, 'NP', 'Evening', '1983-10-08', 'CNA', 'F'),
+  (1113, 'Manisha', 'Yadav', 'Vijay Nagar', 809236780, 'CNM', 'Evening', '1995-03-17', 'CNA', 'F'),
+  (1114, 'Monika', 'Chatterjee', 'Malivya Nagar', 934580321, 'RN', 'Evening', '1981-01-21', 'CNA', 'F'),
+  (1115, 'Rajesh', 'Desai', 'Robort Square', 867000234, 'RN', 'Morning', '1993-09-10', 'CNA', 'F');
+
+
+
+create table lab(
+lid int primary key ,
+
+Test_Name varchar(50) not null,
+PID int not null,
+mobile_no bigint(11) not null,
+symptoms varchar(200),
+Test_charge int not null default 500,
+final_report varchar(49),
+foreign key (PID) references patient (PID)
+);
+
+
+insert into lab (lid, Test_Name, PID, mobile_no, symptoms, Test_charge, final_report) 
+values
+  (1, 'Blood Test', 1, 963852741, 'Weakness', 600, 'Normal'),
+  (2, 'X-Ray', 2, 963852742, 'Fever', 800, 'Clear'),
+  (3, 'MRI', 3, 963852743, 'Headache', 1200, 'Normal'),
+  (4, 'Blood Test', 4, 963852744, 'Cough', 600, 'Abnormal'),
+  (5, 'Ultrasound', 5, 963852745, 'Stomach Pain', 1000, 'Normal'),
+  (6, 'CT Scan', 6, 963852746, 'Injury', 1500, 'Normal'),
+  (7, 'Blood Test', 7, 963852747, 'Fatigue', 600, 'Normal'),
+  (8, 'X-Ray', 8, 963852748, 'Chest Pain', 800, 'Clear'),
+  (9, 'MRI', 9, 963852749, 'Back Pain', 1200, 'Normal'),
+  (10, 'Blood Test', 10, 963852756, 'Allergy', 600, 'Abnormal'),
+  (11, 'Ultrasound', 11, 963852789, 'Joint Pain', 1000, 'Normal'),
+  (12, 'CT Scan', 12, 963852741, 'Shortness of Breath', 1500, 'Normal'),
+  (13, 'Blood Test', 13, 963852710, 'Skin Rash', 600, 'Normal'),
+  (14, 'X-Ray', 14, 963852788, 'Digestive Issues', 800, 'Clear'),
+  (15, 'MRI', 15, 963852777, 'Vision Problems', 1200, 'Normal'),
+  (16, 'Blood Test', 16, 963852788, 'Dizziness', 600, 'Abnormal'),
+  (17, 'Ultrasound', 17, 963852799, 'Insomnia', 1000, 'Normal'),
+  (18, 'CT Scan', 18, 963852711, 'Anxiety', 1500, 'Normal'),
+  (19, 'Blood Test', 19, 963852700, 'Depression', 600, 'Normal'),
+  (20, 'X-Ray', 20, 963852733, 'Hearing Loss', 800, 'Clear'),
+  (21, 'MRI', 21, 963852771, 'Nausea', 1200, 'Normal'),
+  (22, 'Blood Test', 22, 963852790, 'Fainting', 600, 'Abnormal'),
+  (23, 'Ultrasound', 23, 963852456, 'Thyroid Issues', 1000, 'Normal'),
+  (24, 'CT Scan', 24, 963852123, 'Respiratory Problems', 1500, 'Normal'),
+  (25, 'Blood Test', 25, 963852741, 'Diabetes', 600, 'Normal');
+
+
+
+create table bed(
+bed_id int primary key,
+room_no int not null,
+floor_no int not null,
+bed_type varchar(50),
+no_of_day int not null,
+charges int not null default 300,
+pid int references patient(pid)
+);
+
+
+insert into bed (bed_id, room_no, floor_no, bed_type, no_of_day, charges, pid) 
+values
+  (1, 101, 1, 'Low', 5, 300, 1),
+  (2, 101, 1, 'Medium', 3, 500, 2),
+  (3, 101, 1, 'High', 4, 800, 3),
+  (4, 101, 1, 'Low', 2, 300, 4),
+  (5, 101, 1, 'Medium', 7, 500, 5),
+  (6, 102, 1, 'High', 6, 800, 6),
+  (7, 102, 1, 'Low', 8, 300, 7),
+  (8, 102, 1, 'Medium', 5, 500, 8),
+  (9, 102, 1, 'High', 3, 800, 9),
+  (10, 102, 1, 'Low', 4, 300, 10),
+  (11, 103, 1, 'Medium', 6, 500, 11),
+  (12, 103, 1, 'High', 9, 800, 12),
+  (13, 103, 1, 'Low', 5, 300, 13),
+  (14, 103, 1, 'Medium', 7, 500, 14),
+  (15, 103, 1, 'High', 2, 800, 15),
+  (16, 104, 1, 'Low', 3, 300, 16),
+  (17, 104, 1, 'Medium', 4, 500, 17),
+  (18, 104, 1, 'High', 6, 800, 18),
+  (19, 104, 1, 'Low', 3, 300, 19),
+  (20, 104, 1, 'Medium', 5, 500, 20),
+  (21, 105, 1, 'High', 7, 800, 21),
+  (22, 105, 1, 'Low', 4, 300, 22),
+  (23, 105, 1, 'Medium', 6, 500, 23),
+  (24, 105, 1, 'High', 3, 800, 24),
+  (25, 105, 1, 'Low', 8, 300, 25);
+
+create table pharmacy(
+pharmacy_id int primary key,
+pharmacy_name varchar(80),
+exp_date date,
+pid int references patient(pid),
+charges int not null
+);
+
+insert into pharmacy (pharmacy_id, pharmacy_name, exp_date, pid, charges) 
+values
+  (1, 'paracetamol', '2023-12-31', 1, 450),
+  (2, 'cheston cold', '2023-11-30', 2, 500),
+  (3, 'HealthCare Meds', '2023-10-31', 3, 420),
+  (4, 'Wellness Drugs', '2023-12-15', 4, 480),
+  (5, 'Cure Express', '2023-11-10', 5, 550),
+  (6, 'MediLife Pharmacy', '2023-12-05', 6, 430),
+  (7, 'Sunrise Medicals', '2023-10-20', 7, 470),
+  (8, 'LifeLine Pharma', '2023-11-25', 8, 490),
+  (9, 'Healing Hands Meds', '2023-12-28', 9, 460),
+  (10, 'PrimeCure', '2023-11-15', 10, 520),
+  (11, 'Healthy Horizons', '2023-10-05', 11, 440),
+  (12, 'Pharma Plus', '2023-12-20', 12, 500),
+  (13, 'VitalMeds', '2023-11-08', 13, 480),
+  (14, 'Evergreen Pharmacy', '2023-10-12', 14, 450),
+  (15, 'Complete Care Pharmacy', '2023-12-10', 15, 530),
+  (16, 'SafeMeds', '2023-11-18', 16, 420),
+  (17, 'WellCare Pharmacy', '2023-10-25', 17, 490),
+  (18, 'Quick Relief Meds', '2023-12-22', 18, 470),
+  (19, 'Pristine Pharmacy', '2023-11-05', 19, 510),
+  (20, 'EasyCure Drugs', '2023-10-15', 20, 440),
+  (21, 'HealHub Pharmacy', '2023-12-01', 21, 460),
+  (22, 'Elite Pharma', '2023-11-22', 22, 500),
+  (23, 'SwiftHealth Meds', '2023-10-08', 23, 430),
+  (24, 'CareFirst Pharmacy', '2023-12-18', 24, 480),
+  (25, 'MediEase Drugs', '2023-11-28', 25, 450);
+
+
+
+create table surgery(
+sid int primary key auto_increment,
+surgery_type varchar(100),
+pid int not null references patient(pid),
+did int not null references doctor(did),
+surgery_date date,
+charge int not null default 5000
+);
+
+
+
+insert into surgery (surgery_type, pid, did, surgery_date, charge) 
+values
+  ('Appendectomy', 1, 1, '2023-11-15', 7000),
+  ('Knee Replacement', 2, 2, '2023-12-01', 10000),
+  ('Cataract Surgery', 3, 3, '2023-11-18', 8000),
+  ('Heart Bypass', 4, 1, '2023-12-10', 12000),
+  ('Lung Transplant', 5, 2, '2023-11-28', 15000),
+  ('Gallbladder Removal', 6, 3, '2023-12-05', 9000),
+  ('Hip Replacement', 7, 1, '2023-12-15', 11000),
+  ('Hernia Repair', 8, 2, '2023-11-22', 7500),
+  ('Spinal Fusion', 9, 3, '2023-12-08', 13000),
+  ('LASIK Eye Surgery', 10, 1, '2023-12-03', 6000),
+  ('Tonsillectomy', 11, 2, '2023-11-25', 8500),
+  ('Gastric Bypass', 12, 3, '2023-12-12', 9500),
+  ('Rotator Cuff Repair', 13, 1, '2023-11-20', 7200),
+  ('Thyroidectomy', 14, 2, '2023-12-18', 8800),
+  ('Prostate Surgery', 15, 3, '2023-11-30', 10500),
+  ('Coronary Angioplasty', 16, 1, '2023-12-02', 9800),
+  ('Liver Resection', 17, 2, '2023-12-14', 11800),
+  ('Carpal Tunnel Release', 18, 3, '2023-11-27', 6800),
+  ('Knee Arthroscopy', 19, 1, '2023-12-09', 8200),
+  ('Appendectomy', 20, 2, '2023-11-16', 7300),
+  ('Hysterectomy', 21, 3, '2023-12-07', 11200),
+  ('Lumbar Laminectomy', 22, 1, '2023-11-23', 9400),
+  ('Mastectomy', 23, 2, '2023-12-13', 12500),
+  ('Pancreas Transplant', 24, 3, '2023-11-29', 13500),
+  ('Hip Arthroscopy', 25, 1, '2023-12-04', 7600);
+
+
+create table patient_allocation(
+aid int primary key auto_increment,
+pid int not null references patient(pid),
+did_alloted int references doctor(did),
+nid_alloted int references nurse(nid),
+sid_alloted int references surgery(sid),
+bid_alloted int references bed(bid),
+lid_alloted int references lab(lid)
+);
+
+insert into patient_allocation (pid, did_alloted, nid_alloted, sid_alloted, bid_alloted, lid_alloted) 
+values
+  (1, 1, 1101, 1, 1, 1),
+  (2, 2, 1102, 2, 2, 2),
+  (3, 3, 1103, 3, 3, 3),
+  (4, 4, 1104, 4, 4, 4),
+  (5, 5, 1105, 5, 5, 5),
+  (6, 6, 1106, 6, 6, 6),
+  (7, 7, 1107, 7, 7, 7),
+  (8, 8, 1108, 8, 8, 8),
+  (9, 9, 1109, 9, 9, 9),
+  (10, 10, 1110, 10, 10, 10),
+  (11, 11, 1111, 11, 11, 11),
+  (12, 12, 1112, 12, 12, 12),
+  (13, 13, 1113, 13, 13, 13),
+  (14, 14, 1114, 14, 14, 14),
+  (15, 15, 1115, 15, 15, 15),
+  (16, 16, 1, 16, 16, 16),
+  (17, 17, 2, 17, 17, 17),
+  (18, 18, 3, 18, 18, 18),
+  (19, 19, 1, 19, 19, 19),
+  (20, 20, 2, 20, 20, 20),
+  (21, 21, 3, 21, 21, 21),
+  (22, 22, 1, 22, 22, 22),
+  (23, 23, 2, 23, 23, 23),
+  (24, 24, 3, 24, 24, 24),
+  (25, 25, 1, 25, 25, 25);
+
+
+-- drop table bill;
+
+create table bill(
+bid int primary key auto_increment,
+patient_name  varchar(100),
+pid int references patient(pid),
+did_alloted int references patient_allocation(did_alloted),
+adimission_fees int not null default 500,
+adimission_date date,
+consult_charge int default 800,
+bed_charge int references bed(charges),
+lab_charge int references lab(charges),
+surgery_charge int references surgery(charge),
+pharmacy_charge int references pharmacy(charges),
+no_of_days int not null,
+Discharge_date date
+);
+
+
+
+
+select * from bill;
+select adimission_fees+consult_charge+(bed_charge*no_of_days)+lab_charge+surgery_charge+pharmacy_charge as total_bill from bill where pid = 1;
+
+
+INSERT INTO bill (patient_name, pid, did_alloted, adimission_fees, adimission_date, consult_charge, bed_charge, lab_charge, surgery_charge, pharmacy_charge, no_of_days, Discharge_date)
+VALUES 
+('ABHAY SINGH THAKUR', 1, 1, 500, '2023-01-01', 1200, 500, 700, 5000, 600, 5, '2023-01-06'),
+('ABHISHEK TAYDE', 2, 2, 500, '2023-02-01', 1500, 800, 900, 5000, 700, 4, '2023-02-05'),
+('ABHISEK YADUWANSHI', 3, 3, 500, '2023-03-01', 2000, 300, 600, 5000, 800, 3, '2023-03-04'),
+('HEMANT SHARMA', 4, 4, 500, '2023-04-01', 1000, 500, 700, 5000, 500, 6, '2023-04-06'),
+('DIGPAL THAKUR', 5, 5, 500, '2023-05-01', 1800, 800, 900, 5000, 600, 2, '2023-05-03'),
+('RISHI RAGUVANSHI', 6, 6, 500, '2023-06-01', 900, 300, 600, 5000, 700, 7, '2023-06-08'),
+('ARPAN PATRA', 7, 7, 500, '2023-07-01', 1200, 500, 700, 5000, 800, 4, '2023-07-05'),
+('LOKESH PATEL', 8, 8, 500, '2023-08-01', 1500, 800, 900, 5000, 500, 3, '2023-08-04'),
+('ADITYA MALVIYA', 9, 9, 500, '2023-09-01', 2000, 300, 600, 5000, 600, 5, '2023-09-06'),
+('AKASH KUSHWAHA', 10, 10, 500, '2023-10-01', 1000, 500, 700, 5000, 700, 6, '2023-10-06'),
+('ANIMESH MISHRA', 11, 11, 500, '2023-11-01', 1800, 800, 900, 5000, 800, 2, '2023-11-03'),
+('ANKITA TIWARI', 12, 12, 500, '2023-12-01', 900, 300, 600, 5000, 500, 7, '2023-12-08'),
+('ANUSHKA SAHU', 13, 13, 500, '2024-01-01', 1200, 500, 700, 5000, 600, 4, '2024-01-05'),
+('ANUSHKA SHRIVASTAVA', 14, 14, 500, '2024-02-01', 1500, 800, 900, 5000, 700, 3, '2024-02-04'),
+('ARCHI SINGHAI', 15, 15, 500, '2024-03-01', 2000, 300, 600, 5000, 800, 5, '2024-03-05'),
+('ASHWIN CHOUHAN', 16, 16, 500, '2024-04-01', 1000, 500, 700, 5000, 500, 6, '2024-04-06'),
+('BHAVIK JAIN', 17, 17, 500, '2024-05-01', 1800, 800, 900, 5000, 600, 2, '2024-05-03'),
+('HARSHITA JAIN', 18, 18, 500, '2024-06-01', 900, 300, 600, 5000, 700, 7, '2024-06-08'),
+('BHUMIKA JATT', 19, 19, 500, '2024-07-01', 1200, 500, 700, 5000, 800, 4, '2024-07-05'),
+('HARSHITA HAMAD', 20, 20, 500, '2024-08-01', 1500, 800, 900, 5000, 500, 3, '2024-08-04'),
+('CHAVI SHASTRI', 21, 21, 500, '2024-09-01', 2000, 300, 600, 5000, 600, 5, '2024-09-06'),
+('DEVESH BHAGORA', 22, 22, 500, '2024-10-01', 1000, 500, 700, 5000, 700, 6, '2024-10-06'),
+('DEEKSHA GOUR', 23, 23, 500, '2024-11-01', 1800, 800, 900, 5000, 800, 2, '2024-11-03'),
+('CHHAVI GAWANDE', 24, 24, 500, '2024-12-01', 900, 300, 600, 5000, 500, 7, '2024-12-08'),
+('HITESH MAHAJAN', 25, 25, 500, '2025-01-01', 1200, 500, 700, 5000, 600, 4, '2025-01-05');
+
+
+
+
+
+
+
+
