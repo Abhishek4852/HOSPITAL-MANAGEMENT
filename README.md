@@ -2,11 +2,15 @@
 <br>
 # bill generation
 <br>
-from tkinter import *
-from tkinter import messagebox, ttk
-import mysql.connector
-from datetime import datetime
-from reportlab.pdfgen import canvas
+
+
+
+
+     from tkinter import *
+     from tkinter import messagebox, ttk
+     import mysql.connector
+     from datetime import datetime
+     from reportlab.pdfgen import canvas
 
 class Hospital:
     def __init__(self, root):
